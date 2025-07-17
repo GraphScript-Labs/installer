@@ -26,11 +26,6 @@ jobs:
         run: |
           find . -mindepth 1 -maxdepth 1 ! -name 'GraphScript.zip' ! -name '.git' -exec rm -rf {} +
 
-      - name: Copy files from dist
-        run: |
-          mv dist/* .
-          rmdir dist
-
       - name: Version File
         run: |
           date +%s > version

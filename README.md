@@ -1,14 +1,14 @@
 # GraphScript Installer
 
-This repository builds the GraphScript Installer, used to package and distribute the GraphScript app across supported platforms.
+The GraphScript Installer builds and packages the GraphScript application into a ready-to-distribute format for supported platforms.
 
 ## 📦 Purpose
 
-It handles bundling, config generation, runtime setup, and packaging the final application for distribution.
+It automates source fetching, config generation, runtime preparation, and final app packaging—all in one streamlined process.
 
 ## ⚙️ Features
-- Cross-platform installer creation
-- Dynamic datapath configuration
-- Source fetching and embedding
-- Script-driven build process
+- Cross-platform installer generation
+- Dynamic datapath and runtime setup
+- Auto-fetching of latest GraphScript source
+- Script-driven, minimal build workflow
 

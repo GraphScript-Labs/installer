@@ -24,7 +24,7 @@ jobs:
 
       - name: Clean up source files
         run: |
-          find . -mindepth 1 -maxdepth 1 ! -name 'GraphScript.zip' ! -name '.git' -exec rm -rf {} +
+          find . -mindepth 1 -maxdepth 1 ! -name 'GSInstallerMac.zip' ! -name '.git' -exec rm -rf {} +
 
       - name: Version File
         run: |

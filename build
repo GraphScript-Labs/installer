@@ -1,0 +1,59 @@
+rm -rf GSInstaller.app
+rm -rf dist
+
+mkdir dist
+mkdir dist/Contents
+mkdir dist/Contents/Resources
+mkdir dist/Contents/MacOS
+mkdir dist/Contents/src
+mkdir dist/Contents/frontend
+mkdir dist/Contents/runtime
+
+cp -r src/* dist/Contents/src
+cp -r assets/* dist/Contents/Resources
+cp -r frontend/* dist/Contents/frontend
+cp -r runtimes/py313-mac/* dist/Contents/runtime
+
+IDENTIFIER="dev.graphscript.installer"
+NAME="GraphScript Installer"
+VERSION="1.0.0"
+ICON_NAME="GraphScript.icns"
+
+cat > "dist/Contents/Info.plist" <<EOF
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN"
+"http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+  <dict>
+    <key>CFBundleExecutable</key>
+    <string>launcher.sh</string>
+    <key>CFBundleIdentifier</key>
+    <string>${IDENTIFIER}</string>
+    <key>CFBundleName</key>
+    <string>${NAME}</string>
+    <key>CFBundleVersion</key>
+    <string>${VERSION}</string>
+    <key>CFBundleShortVersionString</key>
+    <string>${VERSION}</string>
+    <key>CFBundlePackageType</key>
+    <string>APPL</string>
+    <key>CFBundleIconFile</key>
+    <string>${ICON_NAME}</string>
+  </dict>
+</plist>
+EOF
+
+touch dist/Contents/MacOS/launcher.sh
+
+chmod 755 dist/Contents/MacOS/launcher.sh
+chmod 755 dist/Contents/runtime/bin/*
+
+cat > "dist/Contents/MacOS/launcher.sh" <<EOF
+#!/bin/bash
+DIR="\$(cd "\$(dirname "\$0")" && pwd)"
+source "\$DIR/../runtime/bin/activate"
+python3 "\$DIR/../src/main.py" > "\$DIR/../src/log.txt" 2>&1
+EOF
+
+mv dist GSInstaller.app
+

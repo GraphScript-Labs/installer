@@ -2,3 +2,7 @@
 	path = frontend
 	url = https://github.com/GraphScript-Labs/installer-fe.git
 	branch = latest-release
+[submodule "runtimes"]
+	path = runtimes
+	url = https://github.com/GraphScript-Labs/runtimes.git
+	branch = latest-release

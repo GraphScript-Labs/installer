@@ -57,4 +57,4 @@ EOF
 
 mv dist GSInstaller.app
 codesign --deep --force --sign - "dist/GSInstaller.app"
-ditto -c -k --keepParent "dist/GSInstaller.app" GSInstallerMac.zip
+ditto -c -k --keepParent "GSInstaller.app" GSInstallerMac.zip

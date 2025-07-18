@@ -1,6 +1,6 @@
 # Distribution
-GSInstaller.app
-GSInstaller.zip
+*.app
+*.zip
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

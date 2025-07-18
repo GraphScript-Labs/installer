@@ -56,5 +56,5 @@ python3 "\$DIR/../src/main.py" > "\$DIR/../src/log.txt" 2>&1
 EOF
 
 mv dist GSInstaller.app
-codesign --deep --force --sign - "dist/GSInstaller.app"
+codesign --deep --force --sign - "GSInstaller.app"
 ditto -c -k --keepParent "GSInstaller.app" GSInstallerMac.zip

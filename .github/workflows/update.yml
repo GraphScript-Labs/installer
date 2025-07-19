@@ -1,4 +1,4 @@
-name: Update Submodules from Orphan Branches
+name: Update Submodules
 
 on:
   push:

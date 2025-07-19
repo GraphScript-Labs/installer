@@ -25,8 +25,8 @@ jobs:
             echo "Updating $name..."
             git remote set-url origin $(git config --file $toplevel/.gitmodules submodule.$name.url)
             git fetch origin
-            git checkout -B orphan origin/orphan
-            git pull origin orphan || echo "Nothing to pull for $name"
+            git checkout -B latest-release origin/latest-release
+            git pull origin latest-release || echo "Nothing to pull for $name"
           '
 
       - name: Commit updated submodules

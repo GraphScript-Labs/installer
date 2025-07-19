@@ -63,7 +63,6 @@ jobs:
           name: "GraphScript Installer - ${{ env.VERSION }}"
           files: |
             GSInstallerMac.zip
-            version
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       

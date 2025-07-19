@@ -11,7 +11,7 @@ from buildtools import build_mac
 
 def install(installConfigs: dict[str, str]) -> None:
   internal_dir: str = "__gsds_app_data__"
-  config_datapath: str = f"{installConfigs["datapath"]}/{internal_dir}"
+  config_datapath: str = f"{installConfigs['datapath']}/{internal_dir}"
 
   datapath: str = abspath(expanduser(config_datapath))
   build_path: str = f"{datapath}/installer"

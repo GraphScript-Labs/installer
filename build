@@ -52,7 +52,7 @@ cat > "dist/Contents/MacOS/launcher.sh" <<EOF
 #!/bin/bash
 DIR="\$(cd "\$(dirname "\$0")" && pwd)"
 source "\$DIR/../runtime/bin/activate"
-python3 "\$DIR/../src/main.py" > "\$DIR/../src/log.txt" 2>&1
+python3 "\$DIR/../src/main.py" > "\$DIR/../log.txt" 2>&1
 EOF
 
 mv dist GSInstaller.app

@@ -10,6 +10,7 @@ def generate_configs(datapath: str) -> dict[str, str]:
       "editor",
       "desktop-service",
       "runtimes",
+      "console",
     ])
   }
 

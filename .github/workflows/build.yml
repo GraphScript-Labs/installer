@@ -52,12 +52,15 @@ jobs:
 
       - name: Run build script
         run: ./build
-      
+
+      - name: Set release version
+        run: echo "VERSION=$(date +"%Y.%m.%d.%H%M%S")" >> $GITHUB_ENV
+
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v1
         with:
           tag_name: latest-release
-          name: "GraphScript Installer - $(date +'%Y-%m-%d')"
+          name: "GraphScript Installer - ${{ env.VERSION }}"
           files: |
             GSInstallerMac.zip
             version

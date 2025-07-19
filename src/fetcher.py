@@ -1,6 +1,19 @@
 from os import rename, remove
-from urllib.request import urlretrieve
 from zipfile import ZipFile
+
+from ssl import create_default_context
+from certifi import where as certifi_where
+
+from urllib.request import (
+  urlretrieve,
+  build_opener,
+  install_opener,
+  HTTPSHandler
+)
+
+context = create_default_context(cafile=certifi_where())
+opener = build_opener(HTTPSHandler(context=context))
+install_opener(opener)
 
 def pull_source(repo: str, filepath: str) -> None:
   url: str = "https://github.com/GraphScript-Labs/"

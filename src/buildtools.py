@@ -62,10 +62,12 @@ def build_mac(temp_path: str, datapath: str) -> None:
   )
 
   launcher_code: list[str] = [
-    "#!/bin/bash",
-    'DIR="$(cd "$(dirname "$0")" && pwd)"',
-    'source "$DIR/../runtime/bin/activate"',
-    'python3 "$DIR/../desktop-service/src/main.py" "$@"',
+    """#!/bin/bash""",
+    """DIR="$(cd "$(dirname "$0")" && pwd)\"""",
+    """RUNTIME_DIR="$DIR/../runtime\"""",
+    """SOURCE_DIR="$DIR/../desktop-service/src\"""",
+    """export PYTHONPATH="$RUNTIME_DIR\"""",
+    """$RUNTIME_DIR/bin/python3 "$SOURCE_DIR/main.py\"""",
   ]
 
   write(

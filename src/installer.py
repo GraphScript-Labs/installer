@@ -34,7 +34,7 @@ def install(installConfigs: dict[str, str]) -> None:
   makedirs(f"{datapath}/temp", exist_ok=True)
   
   run([
-    "/Applications/GraphScript.app/Contents/MacOS/launcher",
+    "/Applications/GraphScript.app/Contents/MacOS/setup",
     "--setup",
   ])
 

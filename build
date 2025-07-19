@@ -44,8 +44,9 @@ cat > "dist/Contents/Info.plist" <<EOF
 EOF
 
 touch dist/Contents/MacOS/launcher.sh
+touch dist/Contents/MacOS/setup.sh
 
-chmod 755 dist/Contents/MacOS/launcher.sh
+chmod 755 dist/Contents/MacOS/*
 chmod 755 dist/Contents/runtime/bin/*
 
 cat > "dist/Contents/MacOS/launcher.sh" <<EOF
@@ -57,6 +58,17 @@ SOURCE_DIR="\$DIR/../src"
 
 export PYTHONPATH="\$RUNTIME_DIR"
 \$RUNTIME_DIR/bin/python3 "\$SOURCE_DIR/main.py" "\$@"
+EOF
+
+cat > "dist/Contents/MacOS/setup.sh" <<EOF
+#!/bin/bash
+
+DIR="\$(cd "\$(dirname "\$0")" && pwd)"
+RUNTIME_DIR="\$DIR/../runtime"
+SOURCE_DIR="\$DIR/../src"
+
+export PYTHONPATH="\$RUNTIME_DIR"
+\$RUNTIME_DIR/bin/python3 "\$SOURCE_DIR/main.py" --setup
 EOF
 
 mv dist GSInstaller.app

@@ -52,10 +52,28 @@ jobs:
 
       - name: Run build script
         run: ./build
+      
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v1
+        with:
+          tag_name: latest-release
+          name: "GraphScript Installer - $(date +'%Y-%m-%d')"
+          files: |
+            GSInstallerMac.zip
+            version
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      
+      - name: README
+        run: |
+          URL="https://github.com/GraphScript-Labs"
+          DIR="/installer/releases/download/latest-release/"
+          FILE="GSInstallerMac.zip"
+          echo "$URL$DIR$FILE" > README.md
 
       - name: Clean up source files
         run: |
-          find . -mindepth 1 -maxdepth 1 ! -name 'GSInstallerMac.zip' ! -name '.git' -exec rm -rf {} +
+          find . -mindepth 1 -maxdepth 1 ! -name 'README.md' ! -name '.git' -exec rm -rf {} +
 
       - name: Version File
         run: |

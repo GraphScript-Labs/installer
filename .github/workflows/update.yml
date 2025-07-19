@@ -1,0 +1,41 @@
+name: Update Submodules from Orphan Branches
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+  schedule:
+    - cron: '0 2 * * *'
+
+jobs:
+  update-submodules:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout main with submodules
+        uses: actions/checkout@v4
+        with:
+          submodules: true
+          fetch-depth: 0
+
+      - name: Update orphan branches in submodules
+        run: |
+          git submodule foreach --recursive '
+            echo "Updating $name..."
+            git remote set-url origin $(git config --file $toplevel/.gitmodules submodule.$name.url)
+            git fetch origin
+            git checkout -B orphan origin/orphan
+            git pull origin orphan || echo "Nothing to pull for $name"
+          '
+
+      - name: Commit updated submodules
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add .
+          git commit -m "Update submodules from orphan branches" || echo "No changes"
+          git push origin main
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+

@@ -26,7 +26,7 @@ cat > "dist/Contents/Info.plist" <<EOF
 <plist version="1.0">
   <dict>
     <key>CFBundleExecutable</key>
-    <string>launcher.sh</string>
+    <string>launcher</string>
     <key>CFBundleIdentifier</key>
     <string>${IDENTIFIER}</string>
     <key>CFBundleName</key>
@@ -43,20 +43,19 @@ cat > "dist/Contents/Info.plist" <<EOF
 </plist>
 EOF
 
-touch dist/Contents/MacOS/launcher.sh
-touch dist/Contents/MacOS/setup.sh
+touch dist/Contents/MacOS/launcher
 
 chmod 755 dist/Contents/MacOS/*
 chmod 755 dist/Contents/runtime/bin/*
 
-cat > "dist/Contents/MacOS/launcher.sh" <<EOF
+cat > "dist/Contents/MacOS/launcher" <<EOF
 #!/bin/bash
 
 DIR="\$(cd "\$(dirname "\$0")" && pwd)"
 RUNTIME_DIR="\$DIR/../runtime"
 SOURCE_DIR="\$DIR/../src"
 
-export PYTHONPATH="\$RUNTIME_DIR"
+export PYTHONPATH="\$RUNTIME_DIR/packages"
 \$RUNTIME_DIR/bin/python3 "\$SOURCE_DIR/main.py" "\$@"
 EOF
 

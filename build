@@ -60,17 +60,6 @@ export PYTHONPATH="\$RUNTIME_DIR"
 \$RUNTIME_DIR/bin/python3 "\$SOURCE_DIR/main.py" "\$@"
 EOF
 
-cat > "dist/Contents/MacOS/setup.sh" <<EOF
-#!/bin/bash
-
-DIR="\$(cd "\$(dirname "\$0")" && pwd)"
-RUNTIME_DIR="\$DIR/../runtime"
-SOURCE_DIR="\$DIR/../src"
-
-export PYTHONPATH="\$RUNTIME_DIR"
-\$RUNTIME_DIR/bin/python3 "\$SOURCE_DIR/main.py" --setup
-EOF
-
 mv dist GSInstaller.app
 codesign --deep --force --sign - "GSInstaller.app"
 ditto -c -k --keepParent "GSInstaller.app" GSInstallerMac.zip

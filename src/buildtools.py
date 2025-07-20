@@ -67,7 +67,7 @@ def build_mac(temp_path: str, datapath: str) -> None:
     """RUNTIME_DIR="$DIR/../runtime\"""",
     """SOURCE_DIR="$DIR/../desktop-service/src\"""",
     """export PYTHONPATH="$RUNTIME_DIR\"""",
-    """$RUNTIME_DIR/bin/python3 "$SOURCE_DIR/main.py\"""",
+    """$RUNTIME_DIR/bin/python3 "$SOURCE_DIR/main.py\" "$@\"""",
   ]
 
   write(

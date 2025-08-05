@@ -14,10 +14,10 @@ jobs:
           submodules: true
 
       - name: Make shell script executable
-        run: chmod +x ./build
+        run: chmod +x ./build_mac.sh
 
       - name: Run build script
-        run: ./build
+        run: ./build_mac.sh
 
       - name: Set release version
         run: echo "VERSION=$(date +"%Y.%m.%d.%H%M%S")" >> $GITHUB_ENV
